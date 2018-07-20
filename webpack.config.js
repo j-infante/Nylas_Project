@@ -4,7 +4,7 @@ var UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
 
 module.exports = {
     entry : {
-        'app': [`${__dirname}/src`]
+        "app": [`${__dirname}/src`]
     },
     module : {
         rules: [

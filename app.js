@@ -9,7 +9,7 @@ var debug = require('debug')('nylasproject:server');
 var http = require('http');
 var cors = require('cors');
 
-var indexRouter = require('./routes/index');
+var index = require('./routes/index');
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -19,6 +19,7 @@ app.use(bodyParser.json({ parameterLimit: 10000, limit: 1024 * 1024 * 50 }));
 app.use(bodyParser.urlencoded({ extended: true, parameterLimit: 10000, limit: 1024 * 1024 * 50 }));
 
 app.use(cookieParser());
+app.use("/node_modules", express.static(path.join(__dirname, 'node_modules')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors());
@@ -31,8 +32,7 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
   next();
 })
-
-app.use('/', indexRouter);
+app.use('/', index);
 
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
