@@ -10,7 +10,6 @@ var http = require('http');
 var cors = require('cors');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -34,7 +33,6 @@ app.use(function (req, res, next) {
 })
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
